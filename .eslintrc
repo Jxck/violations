@@ -74,7 +74,7 @@ rules: # 0: disable, 1: warn, 2: error
   block-scoped-var       : 0 # allow var in block
   complexity             : [1, 10] # cyclomatic complexity
   consistent-return      : 2, # TODO: no return without value
-  curly                  : [2, 'all'] # TODO: never omit brace in if,else,for,while,do
+  curly                  : [1, 'all'] # TODO: never omit brace in if,else,for,while,do
   default-case           : 2 # always use default in switch (or write # no default instead)
   dot-notation           : 2 # TODO: use dot notation like foo.bar instead of foo['bar']
   eqeqeq                 : 2 # use === or !== always

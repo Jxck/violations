@@ -32,6 +32,44 @@ describe('validate()', () => {
       assert.strictEqual(violations, undefined);
     });
   });
+
+  describe('with argument', () => {
+    let rules = {
+      a: (a) => {
+        if (a !== 1) return 'a should be 1';
+      },
+      b: (b) => {
+        if (b !== 'b') return 'b should be "b"';
+      }
+    };
+
+    let validator = new Violate(rules);
+
+    it('valid', () => {
+      let violations = validator.validate({ a: 1, b: 'b' });
+      console.log(violations);
+      assert.strictEqual(violations.length, 0);
+    });
+
+    it('invalid single', () => {
+      let violations = validator.validate({ a: 10, b: 'b' });
+      assert.strictEqual(violations.length, 1);
+      assert.strictEqual(violations[0], 'a should be 1');
+    });
+
+    it('invalid multi', () => {
+      let violations = validator.validate({ a: 10, b: 'c' });
+      assert.strictEqual(violations.length, 2);
+      assert.strictEqual(violations[0], 'a should be 1');
+      assert.strictEqual(violations[1], 'b should be "b"');
+    });
+
+    it('undefined', () => {
+      let violations = validator.validate({ a: 1 });
+      assert.strictEqual(violations.length, 1);
+      assert.strictEqual(violations[0], 'b is required');
+    });
+  });
 });
 
 describe('assert()', () => {
