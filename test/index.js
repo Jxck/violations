@@ -40,6 +40,11 @@ describe('validate()', () => {
       },
       b: (b) => {
         if (b !== 'b') return 'b should be "b"';
+      },
+      _: (all) => {
+        let violations = [];
+        if (!all.a) violations.push('a is required');
+        return violations;
       }
     };
 
@@ -50,28 +55,33 @@ describe('validate()', () => {
       assert.strictEqual(violations.length, 0);
     });
 
-    it('valid with over', () => {
-      let violations = validator.validate({ a: 1, b: 'b', c: function(){} });
+    it('valid with over argument', () => {
+      let violations = validator.validate({ a: 1, b: 'b', c: () => {} });
       assert.strictEqual(violations.length, 0);
     });
 
-    it('invalid single', () => {
+    it('valid without not requied argument', () => {
+      let violations = validator.validate({ a: 1 });
+      assert.strictEqual(violations.length, 0);
+    });
+
+    it('invalid single argument', () => {
       let violations = validator.validate({ a: 10, b: 'b' });
       assert.strictEqual(violations.length, 1);
       assert.strictEqual(violations[0], 'a should be 1');
     });
 
-    it('invalid multi', () => {
+    it('invalid multi arguments', () => {
       let violations = validator.validate({ a: 10, b: 'c' });
       assert.strictEqual(violations.length, 2);
       assert.strictEqual(violations[0], 'a should be 1');
       assert.strictEqual(violations[1], 'b should be "b"');
     });
 
-    it('undefined', () => {
-      let violations = validator.validate({ a: 1 });
+    it('invalid required', () => {
+      let violations = validator.validate({ b: 'b' });
       assert.strictEqual(violations.length, 1);
-      assert.strictEqual(violations[0], 'b is required');
+      assert.strictEqual(violations[0], 'a is required');
     });
   });
 });

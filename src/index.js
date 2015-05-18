@@ -14,18 +14,9 @@ export class Violate {
       return;
     }
 
-    let requires = [];
+    let violations = this.rules._(values);
 
-    let passed = Object.keys(values);
-
-    let required = Object.keys(this.rules);
-    required.forEach((key) => {
-      if (passed.indexOf(key) < 0) {
-        requires.push(`${key} is required`);
-      }
-    });
-
-    let violations = passed.map((name) => {
+    violations = Object.keys(values).map((name) => {
       // execute rules if exists to value
       let value = values[name];
 
@@ -40,9 +31,9 @@ export class Violate {
 
       // merge into array
       return pre.concat(curr);
-    }, []);
+    }, []).concat(violations);
 
-    return requires.concat(violations);
+    return violations;
   }
 
   assert(values) {
