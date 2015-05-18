@@ -13,26 +13,28 @@ describe('new', () => {
       let violate = new Violate();
       assert.fail(false, 'cant be here', violate);
     } catch(err) {
-      assert.strictEqual(err.message, 'new Violate requires rules object');
+      assert.strictEqual(err.message, 'constructor requires rules object');
     }
   });
 });
 
-describe('validate', () => {
-  let rules = {};
-  let validator = new Violate(rules);
-  it('without values returns undefined', () => {
-    let violations = validator.validate();
-    assert.strictEqual(violations, undefined);
-  });
+describe('validate()', () => {
+  describe('no argument', () => {
+    let rules = {};
+    let validator = new Violate(rules);
+    it('without values returns undefined', () => {
+      let violations = validator.validate();
+      assert.strictEqual(violations, undefined);
+    });
 
-  it('with null returns undefined', () => {
-    let violations = validator.validate(null);
-    assert.strictEqual(violations, undefined);
+    it('with null returns undefined', () => {
+      let violations = validator.validate(null);
+      assert.strictEqual(violations, undefined);
+    });
   });
 });
 
-describe('assert', () => {
+describe('assert()', () => {
   let consoleassert;
   before(() => {
     consoleassert = console.assert;
