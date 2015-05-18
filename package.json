@@ -1,0 +1,25 @@
+{
+  "name": "violations",
+  "version": "1.0.0",
+  "description": "get violated arguments for validation and assertion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jxck/violations.git"
+  },
+  "keywords": [
+    "validate",
+    "validation",
+    "violations",
+    "assertion"
+  ],
+  "author": "Jxck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jxck/violations/issues"
+  },
+  "homepage": "https://github.com/jxck/violations"
+}
