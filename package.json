@@ -7,6 +7,7 @@
     "url": "https://github.com/jxck/violations/issues"
   },
   "devDependencies": {
+    "babel": "^5.4.3",
     "mocha": "^2.2.5"
   },
   "homepage": "https://github.com/jxck/violations",
