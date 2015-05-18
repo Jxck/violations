@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/jxck/violations/issues"
   },
-  "homepage": "https://github.com/jxck/violations"
+  "homepage": "https://github.com/jxck/violations",
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
 }
