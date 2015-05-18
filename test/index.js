@@ -31,25 +31,32 @@ describe('validate', () => {
   });
 });
 
-describe('node', () => {
-  describe('assert', () => {
-    let rules = {};
-    let validator = new violate(rules);
+describe('assert', () => {
+  let consoleassert;
+  before(() => {
+    consoleassert = console.assert;
+  });
 
-    it('without values doesnt throw AssertionError', () => {
-      try {
-        validator.assert();
-      } catch(err) {
-        assert.fail(false);
-      }
+  after(() => {
+    console.assert = consoleassert;
+  });
+
+  let rules = {};
+  let validator = new violate(rules);
+
+  describe('dont call console.assert', () => {
+    console.assert = () => {
+      assert.fail(true);
+    }
+
+    it('without values', () => {
+      validator.assert();
     });
 
-    it('with null doesnt throw AssertionError', () => {
-      try {
-        validator.assert(null);
-      } catch(err) {
-        assert.fail(false);
-      }
+    it('with null', () => {
+      validator.assert(null);
     });
+
+    console.assert = consoleassert;
   });
 });
