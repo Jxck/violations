@@ -43,9 +43,7 @@ export class Violate {
       return;
     }
 
-    // actually throw first error only
-    violations.forEach((violation) => {
-      console.assert(false, violation);
-    });
+    // use console.assert for isomorphic
+    console.assert(false, violations);
   }
 }

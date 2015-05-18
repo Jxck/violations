@@ -35,16 +35,16 @@ describe('validate()', () => {
 
   describe('with argument', () => {
     let rules = {
+      _: (all) => {
+        let violations = [];
+        if (!all.a) violations.push('a is required');
+        return violations;
+      },
       a: (a) => {
         if (a !== 1) return 'a should be 1';
       },
       b: (b) => {
         if (b !== 'b') return 'b should be "b"';
-      },
-      _: (all) => {
-        let violations = [];
-        if (!all.a) violations.push('a is required');
-        return violations;
       }
     };
 
@@ -56,7 +56,7 @@ describe('validate()', () => {
     });
 
     it('valid with over argument', () => {
-      let violations = validator.validate({ a: 1, b: 'b', c: () => {} });
+      let violations = validator.validate({ a: 1, b: 'b', c: (a) => a });
       assert.strictEqual(violations.length, 0);
     });
 
