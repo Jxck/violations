@@ -47,7 +47,11 @@ describe('validate()', () => {
 
     it('valid', () => {
       let violations = validator.validate({ a: 1, b: 'b' });
-      console.log(violations);
+      assert.strictEqual(violations.length, 0);
+    });
+
+    it('valid with over', () => {
+      let violations = validator.validate({ a: 1, b: 'b', c: function(){} });
       assert.strictEqual(violations.length, 0);
     });
 
