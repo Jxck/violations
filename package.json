@@ -25,6 +25,6 @@
   "scripts": {
     "build": "babel src --out-dir build/src && babel test --out-dir build/test",
     "clean": "rm -rf build/*",
-    "test": "npm run clean && npm run build && node build/test"
+    "test": "npm run clean && npm run build && mocha build/test"
   }
 }

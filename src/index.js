@@ -1,9 +1,17 @@
 export class violate {
   constructor(rules) {
+    if (rules === undefined) {
+      throw new Error('new violate requires rules object');
+    }
+
     this.rules = rules;
   }
 
   validate(values) {
+    if (values === null || values === undefined) {
+      return;
+    }
+
     let violations = Object.keys(values).map((name) => {
       let value = values[name];
 
@@ -23,6 +31,10 @@ export class violate {
 
   assert(values) {
     let violations = this.validate(values);
+
+    if (violations === undefined) {
+      return;
+    }
 
     // actually throw first error only
     violations.forEach((violation) => {
