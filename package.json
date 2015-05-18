@@ -27,7 +27,7 @@
   "scripts": {
     "build": "babel src --out-dir build/src && babel test --out-dir build/test",
     "clean": "rm -rf build/*",
-    "test": "npm run clean && npm run build && mocha build/test",
-    "lint": "eslint src test example.js"
+    "lint": "fixpack && eslint src test example.js",
+    "test": "npm run clean && npm run build && mocha build/test"
   }
 }
