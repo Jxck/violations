@@ -1,4 +1,4 @@
-let violate = require('./').violate;
+let Violate = require('./').Violate;
 
 let rule = {
   name: (name) => {
@@ -37,9 +37,9 @@ let rule = {
       return 'age should be positive value';
     }
   }
-}
+};
 
-let validator = new violate(rule);
+let validator = new Violate(rule);
 
 function fn(name, age) {
   // check and throw AssertionError

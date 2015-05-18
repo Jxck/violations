@@ -8,6 +8,7 @@
   },
   "devDependencies": {
     "babel": "^5.4.3",
+    "eslint": "^0.21.1",
     "mocha": "^2.2.5"
   },
   "homepage": "https://github.com/jxck/violations",
@@ -26,6 +27,7 @@
   "scripts": {
     "build": "babel src --out-dir build/src && babel test --out-dir build/test",
     "clean": "rm -rf build/*",
-    "test": "npm run clean && npm run build && mocha build/test"
+    "test": "npm run clean && npm run build && mocha build/test",
+    "lint": "eslint src test example.js"
   }
 }

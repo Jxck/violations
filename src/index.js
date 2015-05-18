@@ -1,4 +1,4 @@
-export class violate {
+export class Violate {
   constructor(rules) {
     if (rules === undefined) {
       throw new Error('new violate requires rules object');
@@ -21,7 +21,7 @@ export class violate {
     }).reduce((pre, curr) => {
       if (curr === undefined) {
         return pre;
-      };
+      }
 
       return pre.concat(curr);
     }, []);
