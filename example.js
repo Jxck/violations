@@ -1,4 +1,4 @@
-let violate = require('../src').violate;
+let violate = require('./').violate;
 
 let rule = {
   name: (name) => {
@@ -42,6 +42,7 @@ let rule = {
 let validator = new violate(rule);
 
 function fn(name, age) {
+  // check and throw AssertionError
   validator.assert({ name: name, age: age });
   console.log(name, age);
 }
@@ -52,6 +53,7 @@ function main() {
 
   let violations = validator.validate({ name: name, age: age, foo: 'bar' });
   violations.forEach((violation) => {
+    // use for user feedback
     console.log('\x1b[31m', violation, '\x1b[0m');
   });
 
