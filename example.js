@@ -2,30 +2,30 @@
 let Violate = require('./src').Violate;
 
 let rule = {
-  name: (name) => {
-    if (name === undefined) {
-      return 'name is required';
+  name: (value, name) => {
+    if (value === undefined) {
+      return `${name} is required`;
     }
 
-    if (typeof name !== 'string') {
-      return 'name should be string';
+    if (typeof value !== `string`) {
+      return `${name} should be string`;
     }
 
     let messages = [];
-    if (name.length < 10) {
-      messages.push('name should longer than 10');
+    if (value.length < 10) {
+      messages.push(`${name} should longer than 10`);
     }
 
-    if (name.match(/[a-zA-Z]*/)) {
-      messages.push('name should contain alphabet');
+    if (value.match(/[a-zA-Z]*/)) {
+      messages.push(`${name} should contain alphabet`);
     }
 
-    if (name.match(/[0-9]*/)) {
-      messages.push('name should contain number');
+    if (value.match(/[0-9]*/)) {
+      messages.push(`${name} should contain number`);
     }
 
-    if (name.match(/(#|@|&)/)) {
-      messages.push('name should not contain "#", "@" "&"');
+    if (value.match(/(#|@|&)/)) {
+      messages.push(`${name} should not contain "#", "@" "&"`);
     }
 
     if (messages.length > 0) {
@@ -33,17 +33,17 @@ let rule = {
     }
   },
 
-  age: (age) => {
-    if (age === undefined) {
-      return 'age is required';
+  age: (value, name) => {
+    if (value === undefined) {
+      return `${name} is required`;
     }
 
-    if (typeof age !== 'number') {
-      return 'age should be number';
+    if (typeof value !== `number`) {
+      return `${name} should be number`;
     }
 
-    if (age < 0) {
-      return 'age should be positive value';
+    if (value < 0) {
+      return `${name} should be positive value`;
     }
   }
 };
