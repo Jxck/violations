@@ -19,7 +19,7 @@ export class Violate {
       let value = values[key];
 
       if (this.rules[key]) {
-        return this.rules[key](value);
+        return this.rules[key](value, key);
       }
     }).reduce((pre, curr) => {
       // filter undefined
