@@ -35,15 +35,12 @@ describe('validate()', () => {
 
   describe('with argument', () => {
     let rules = {
-      _: (all) => {
-        let violations = [];
-        if (!all.a) violations.push('a is required');
-        return violations;
-      },
       a: (a) => {
+        if (a === undefined) return 'a is required';
         if (a !== 1) return 'a should be 1';
       },
       b: (b) => {
+        if (b === undefined) return 'b is required';
         if (b !== 'b') return 'b should be "b"';
       }
     };
@@ -79,9 +76,11 @@ describe('validate()', () => {
     });
 
     it('invalid required', () => {
-      let violations = validator.validate({ b: 'b' });
-      assert.strictEqual(violations.length, 1);
-      assert.strictEqual(violations[0], 'a is required');
+      ((a, b) => {
+        let violations = validator.validate({ a: a, b: b });
+        assert.strictEqual(violations.length, 1);
+        assert.strictEqual(violations[0], 'b is required');
+      })(1);
     });
   });
 });

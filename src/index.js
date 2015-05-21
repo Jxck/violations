@@ -14,14 +14,7 @@ export class Violate {
       return;
     }
 
-    let violations_all = [];
-
-    // executre `_` first if exists
-    if (this.rules._) {
-      violations_all = this.rules._(values);
-    }
-
-    let violations_keys = Object.keys(values).map((key) => {
+    let violations = Object.keys(values).map((key) => {
       // execute rules if exists to value
       let value = values[key];
 
@@ -38,7 +31,7 @@ export class Violate {
       return pre.concat(curr);
     }, []);
 
-    return violations_all.concat(violations_keys);
+    return violations;
   }
 
   assert(values) {
