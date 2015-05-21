@@ -14,14 +14,19 @@ export class Violate {
       return;
     }
 
-    let violations = this.rules._(values);
+    let violations_all = [];
 
-    violations = Object.keys(values).map((name) => {
+    // executre `_` first if exists
+    if (this.rules._) {
+      violations_all = this.rules._(values);
+    }
+
+    let violations_keys = Object.keys(values).map((key) => {
       // execute rules if exists to value
-      let value = values[name];
+      let value = values[key];
 
-      if (this.rules[name]) {
-        return this.rules[name](value);
+      if (this.rules[key]) {
+        return this.rules[key](value);
       }
     }).reduce((pre, curr) => {
       // filter undefined
@@ -31,9 +36,9 @@ export class Violate {
 
       // merge into array
       return pre.concat(curr);
-    }, []).concat(violations);
+    }, []);
 
-    return violations;
+    return violations_all.concat(violations_keys);
   }
 
   assert(values) {
