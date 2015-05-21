@@ -1,4 +1,4 @@
-let Violate = require('./').Violate;
+let Violate = require('./src').Violate;
 
 let rule = {
   name: (name) => {
