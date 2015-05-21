@@ -28,9 +28,7 @@ let rule = {
       messages.push(`${name} should not contain "#", "@" "&"`);
     }
 
-    if (messages.length > 0) {
-      return messages;
-    }
+    return messages;
   },
 
   age: (value, name) => {

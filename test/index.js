@@ -49,17 +49,17 @@ describe('validate()', () => {
 
     it('valid', () => {
       let violations = validator.validate({ a: 1, b: 'b' });
-      assert.strictEqual(violations.length, 0);
+      assert.strictEqual(violations, undefined);
     });
 
     it('valid with over argument', () => {
       let violations = validator.validate({ a: 1, b: 'b', c: (a) => a });
-      assert.strictEqual(violations.length, 0);
+      assert.strictEqual(violations, undefined);
     });
 
     it('valid without not requied argument', () => {
       let violations = validator.validate({ a: 1 });
-      assert.strictEqual(violations.length, 0);
+      assert.strictEqual(violations, undefined);
     });
 
     it('invalid single argument', () => {
@@ -81,6 +81,36 @@ describe('validate()', () => {
         assert.strictEqual(violations.length, 1);
         assert.strictEqual(violations[0], 'b is required');
       })(1);
+    });
+  });
+
+  describe('multiple error', () => {
+    it('returns list errors', () => {
+      let rules = {
+        a: (a) => {
+          return [
+            'invalid a',
+            'invalid b'
+          ];
+        }
+      };
+
+      let validator = new Violate(rules);
+      let violations = validator.validate({ a: 1 });
+      assert.strictEqual(violations.length, 2);
+    });
+
+    it('return empty errors', () => {
+      let rules = {
+        a: (a) => {
+          return [
+          ];
+        }
+      };
+
+      let validator = new Violate(rules);
+      let violations = validator.validate({ a: 1 });
+      assert.strictEqual(violations, undefined);
     });
   });
 });

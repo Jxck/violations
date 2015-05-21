@@ -27,11 +27,17 @@ export class Violate {
         return pre;
       }
 
+      if (Array.isArray(curr) && curr.length === 0) {
+        return pre;
+      }
+
       // merge into array
       return pre.concat(curr);
     }, []);
 
-    return violations;
+    if (violations.length > 0) {
+      return violations;
+    }
   }
 
   assert(values) {
