@@ -1,7 +1,12 @@
+// RUNNNING: $ npm run example
 let Violate = require('./src').Violate;
 
 let rule = {
   name: (name) => {
+    if (name === undefined) {
+      return 'name is required';
+    }
+
     if (typeof name !== 'string') {
       return 'name should be string';
     }
@@ -29,6 +34,10 @@ let rule = {
   },
 
   age: (age) => {
+    if (age === undefined) {
+      return 'age is required';
+    }
+
     if (typeof age !== 'number') {
       return 'age should be number';
     }
@@ -43,6 +52,12 @@ let validator = new Violate(rule);
 
 function fn(name, age) {
   // check and throw AssertionError
+
+  console.log(`\x1b[32m
+######################################################
+↓↓↓  AssertionError Belows are Exepcted Behavior  ↓↓↓
+######################################################
+\x1b[0m`);
   validator.assert({ name: name, age: age });
   console.log(name, age);
 }
