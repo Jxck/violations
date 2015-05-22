@@ -63,6 +63,6 @@ export class Violate {
     }
 
     // use console.assert for isomorphic
-    console.assert(false, violations);
+    console.assert(false, JSON.stringify(violations));
   }
 }
