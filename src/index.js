@@ -35,7 +35,7 @@ export class Violate {
       // execute rules with undefined if values not exists.
       let value = values[key];
 
-      return this.rules[key](value, key);
+      return this.rules[key](value, key, util);
     }).reduce((pre, curr) => {
       // filter undefined
       if (curr === undefined) {
