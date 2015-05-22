@@ -14,13 +14,11 @@ export class Violate {
       return;
     }
 
-    let violations = Object.keys(values).map((key) => {
-      // execute rules if exists to value
+    let violations = Object.keys(this.rules).map((key) => {
+      // execute rules with undefined if values not exists.
       let value = values[key];
 
-      if (this.rules[key]) {
-        return this.rules[key](value, key);
-      }
+      return this.rules[key](value, key);
     }).reduce((pre, curr) => {
       // filter undefined
       if (curr === undefined) {
