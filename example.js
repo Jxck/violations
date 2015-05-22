@@ -2,12 +2,12 @@
 let Violate = require('./src').Violate;
 
 let rule = {
-  name: (value, name) => {
-    if (value === undefined) {
+  name: (value, name, _) => {
+    if (_.isUndefined(value)) {
       return `${name} is required`;
     }
 
-    if (typeof value !== `string`) {
+    if (_.isString(value)) {
       return `${name} should be string`;
     }
 
@@ -31,12 +31,12 @@ let rule = {
     return messages;
   },
 
-  age: (value, name) => {
-    if (value === undefined) {
-      return `${name} is required`;
+  age: (value, name, _) => {
+    if (_.isUndefined(value)) {
+      return; // optional
     }
 
-    if (typeof value !== `number`) {
+    if (_.isNumber(value)) {
       return `${name} should be number`;
     }
 
@@ -49,13 +49,15 @@ let rule = {
 let validator = new Violate(rule);
 
 function fn(name, age) {
-  // check and throw AssertionError
-
   console.log(`\x1b[32m
 ######################################################
 ↓↓↓  AssertionError Belows are Exepcted Behavior  ↓↓↓
 ######################################################
 \x1b[0m`);
+
+
+  // you can assert() for validate given parameter
+  // and throw AssertionError if invalid.
   validator.assert({ name: name, age: age });
   console.log(name, age);
 }
@@ -64,6 +66,8 @@ function main() {
   let name = '#&';
   let age = -1;
 
+  // you can validate() for validate your parameter
+  // and get violations array if invalid.
   let violations = validator.validate({ name: name, age: age, foo: 'bar' });
   violations.forEach((violation) => {
     // use for user feedback
