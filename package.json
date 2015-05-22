@@ -18,6 +18,16 @@
     "validation",
     "violations"
   ],
+  "files": [
+    ".eslintrc",
+    ".gitignore",
+    "README.md",
+    "build",
+    "index.js",
+    "package.json",
+    "src",
+    "test"
+  ],
   "license": "MIT",
   "main": "index.js",
   "repository": {
@@ -29,6 +39,7 @@
     "clean": "rm -rf build/* && rm -rf npm-debug.log",
     "example": "babel-node example.js",
     "lint": "fixpack && eslint src test example.js",
-    "test": "npm run clean && npm run build && mocha build/test"
+    "test": "npm run clean && npm run build && mocha build/test",
+    "prepublish": "npm run clean && npm run build"
   }
 }
