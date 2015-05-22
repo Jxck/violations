@@ -173,7 +173,7 @@ rules: # 0: disable, 1: warn, 2: error
   no-spaced-func         : 2 # space in function call: fn ()
   no-ternary             : 0 # no ternary
   no-trailing-spaces     : 2 # no space at end of line
-  no-underscore-dangle   : 2 # no use underscore for var
+  no-underscore-dangle   : 0 # no use underscore for var
   no-wrap-func           : 2 # no wrap func when iife
   one-var                : 0 # one ver per scope
   operator-assignment    : 0 # x = x + 1 or x ++ is case by case

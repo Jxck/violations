@@ -85,7 +85,7 @@ describe('validate()', () => {
   describe('multiple error', () => {
     it('returns list errors', () => {
       let rules = {
-        a: (a) => {
+        a: () => {
           return [
             'invalid a',
             'invalid b'
@@ -100,7 +100,7 @@ describe('validate()', () => {
 
     it('return empty errors', () => {
       let rules = {
-        a: (a) => {
+        a: () => {
           return [
           ];
         }
