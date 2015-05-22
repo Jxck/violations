@@ -36,10 +36,6 @@ export class Violate {
     if (violations.length > 0) {
       return violations;
     }
-
-    if (violations.length === 1) {
-      return violations[0];
-    }
   }
 
   assert(values) {
