@@ -35,7 +35,16 @@ export class Violate {
       // execute rules with undefined if values not exists.
       let value = values[key];
 
-      return this.rules[key](value, key, util);
+      let rule = this.rules[key];
+
+      // apply rule if function
+      if (util.isFunction(rule)) {
+        return rule(value, key, util);
+      }
+
+      // create validator if rule is object
+      let v = new Violate(rule);
+      return v.validate(value);
     }).reduce((pre, curr) => {
       // filter undefined
       if (curr === undefined) {

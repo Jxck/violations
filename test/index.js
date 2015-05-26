@@ -142,3 +142,39 @@ describe('assert()', () => {
     console.assert = consoleassert;
   });
 });
+
+describe('nested object', () => {
+  let target = {
+    a: 'a',
+    b: {
+      c: 'c',
+      d: 'd'
+    }
+  }
+
+  let rules = {
+    a: (v) => {
+      if (v !== 'a') return 'a should "a"';
+    },
+    b: {
+      c: (v) => {
+        if (v !== 'c') return 'c should "c"';
+      },
+      d: (v) => {
+        if (v !== 'd') return 'd should "d"';
+      }
+    }
+  }
+
+  let validator = new Violate(rules);
+
+  it('valid', () => {
+    let violations = validator.validate({ a: 'a', b: { c: 'c', d: 'd' }});
+    assert.strictEqual(violations, undefined);
+  });
+
+  it('invalid', () => {
+    let violations = validator.validate({ a: 0, b: { c: 0, d: 0 }});
+    assert.deepEqual(violations, ['a should "a"', 'c should "c"', 'd should "d"']);
+  });
+});
