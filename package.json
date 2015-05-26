@@ -39,7 +39,7 @@
     "clean": "rm -rf build/* && rm -rf npm-debug.log",
     "example": "babel-node example.js",
     "lint": "fixpack && eslint src test example.js",
-    "test": "npm run clean && npm run build && mocha build/test",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "test": "npm run lint && npm run clean && npm run build && mocha build/test"
   }
 }
