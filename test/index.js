@@ -150,7 +150,7 @@ describe('nested object', () => {
       c: 'c',
       d: 'd'
     }
-  }
+  };
 
   let rules = {
     a: (v) => {
@@ -164,17 +164,17 @@ describe('nested object', () => {
         if (v !== 'd') return 'd should "d"';
       }
     }
-  }
+  };
 
   let validator = new Violate(rules);
 
   it('valid', () => {
-    let violations = validator.validate({ a: 'a', b: { c: 'c', d: 'd' }});
+    let violations = validator.validate(target);
     assert.strictEqual(violations, undefined);
   });
 
   it('invalid', () => {
     let violations = validator.validate({ a: 0, b: { c: 0, d: 0 }});
-    assert.deepEqual(violations, ['a should "a"', 'c should "c"', 'd should "d"']);
+    assert.deepEqual(violations, [ 'a should "a"', 'c should "c"', 'd should "d"' ]);
   });
 });

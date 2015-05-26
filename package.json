@@ -11,13 +11,6 @@
     "eslint": "^0.21.1",
     "mocha": "^2.2.5"
   },
-  "homepage": "https://github.com/jxck/violations",
-  "keywords": [
-    "assertion",
-    "validate",
-    "validation",
-    "violations"
-  ],
   "files": [
     ".eslintrc",
     ".gitignore",
@@ -27,6 +20,13 @@
     "package.json",
     "src",
     "test"
+  ],
+  "homepage": "https://github.com/jxck/violations",
+  "keywords": [
+    "assertion",
+    "validate",
+    "validation",
+    "violations"
   ],
   "license": "MIT",
   "main": "index.js",
