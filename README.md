@@ -170,6 +170,35 @@ let rule = {
 }
 ```
 
+## nested rules
+
+if object was nested, write rule like this.
+
+```js
+let target = {
+  a: 'a',
+  b: {
+    c: 'c',
+    d: 'd'
+  }
+};
+
+let rules = {
+  a: (v) => {
+    if (v !== 'a') return 'a should "a"';
+  },
+  b: {
+    // nested
+    c: (v) => {
+      if (v !== 'c') return 'c should "c"';
+    },
+    d: (v) => {
+      if (v !== 'd') return 'd should "d"';
+    }
+  }
+}
+```
+
 ## utility function
 
 - isString
