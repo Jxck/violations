@@ -42,6 +42,7 @@ export class Violate {
         return pre;
       }
 
+      // filter empty array
       if (Array.isArray(curr) && curr.length === 0) {
         return pre;
       }
@@ -50,9 +51,12 @@ export class Violate {
       return pre.concat(curr);
     }, []);
 
+    // return violations if exists
     if (violations.length > 0) {
       return violations;
     }
+
+    // return undefined if no violations
   }
 
   assert(values) {
