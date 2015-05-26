@@ -1,7 +1,7 @@
 {
   "name": "violations",
   "description": "get violated arguments for validation and assertion",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "Jxck",
   "bugs": {
     "url": "https://github.com/jxck/violations/issues"
