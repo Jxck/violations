@@ -3,7 +3,7 @@ export let util = {
   isString: (v) => typeof v === 'string',
   isFunction: (v) => typeof v === 'function',
   isBoolean: (v) => typeof v === 'boolean',
-  isNumber: (v) => (typeof v === 'number' || v instanceof Number) && !Number.isNaN(v),
+  isNumber: (v) => (typeof v === 'number' || v instanceof Number) && !isNaN(v),
   isInteger: (v) => typeof v === 'number' && Number.isInteger(v),
   isUndefined: (v) => typeof v === 'undefined',
   isArray: (v) => Array.isArray(v),
