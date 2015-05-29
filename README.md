@@ -214,6 +214,7 @@ let rules = {
 - isDate
 - isRegExp
 - isError (instanceof Error)
+- isEmail (based on [whatwg regexp](https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address))
 
 ## License
 

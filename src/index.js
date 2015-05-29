@@ -13,6 +13,7 @@ export let util = {
   isDate: (v) => util._toS(v) === '[object Date]',
   isRegExp: (v) => util._toS(v) === '[object RegExp]',
   isError: (v) => v instanceof Error,
+  // https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address
   isEmail: (v) => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(v)
 };
 
