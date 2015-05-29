@@ -12,7 +12,8 @@ export let util = {
   isObject: (v) => typeof v === 'object' && !util.isArray(v) && !util.isNull(v) && !util.isDate(v) && !util.isRegExp(v) && !util.isNumber(v),
   isDate: (v) => util._toS(v) === '[object Date]',
   isRegExp: (v) => util._toS(v) === '[object RegExp]',
-  isError: (v) => v instanceof Error
+  isError: (v) => v instanceof Error,
+  isEmail: (v) => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(v)
 };
 
 export class Violate {

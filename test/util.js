@@ -161,4 +161,14 @@ describe('util', () => {
       assert.strictEqual(_.isError(v), false, `isError(${v})`);
     });
   });
+
+  it('isEmail', () => {
+    assert(_.isEmail('mail@example.com'));
+    assert(!_.isEmail('http://example.com'));
+
+    let values = ['a', [], () => {}, true, 10, undefined, null, '', {}, new Date(), /abc/, new Error('test') ];
+    values.forEach((v) => {
+      assert.strictEqual(_.isEmail(v), false, `isError(${v})`);
+    });
+  });
 });
