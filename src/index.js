@@ -1,5 +1,8 @@
+function toS(v) {
+  return Object.prototype.toString.call(v);
+}
+
 export let util = {
-  _toS: (v) => Object.prototype.toString.call(v),
   isString: (v) => typeof v === 'string',
   isFunction: (v) => typeof v === 'function',
   isBoolean: (v) => typeof v === 'boolean',
@@ -10,8 +13,8 @@ export let util = {
   isNull: (v) => v === null,
   isEmpty: (v) => util.isUndefined(v) || util.isNull(v) || v === '',
   isObject: (v) => typeof v === 'object' && !util.isArray(v) && !util.isNull(v) && !util.isDate(v) && !util.isRegExp(v) && !util.isNumber(v),
-  isDate: (v) => util._toS(v) === '[object Date]',
-  isRegExp: (v) => util._toS(v) === '[object RegExp]',
+  isDate: (v) => toS(v) === '[object Date]',
+  isRegExp: (v) => toS(v) === '[object RegExp]',
   isError: (v) => v instanceof Error,
   // https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address
   isEmail: (v) => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(v)
