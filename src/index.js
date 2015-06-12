@@ -20,6 +20,27 @@ export let util = {
   isEmail: (v) => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(v)
 };
 
+export class AssertionError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'AssertionError';
+    this.message = message;
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, argument.callee);
+    } else {
+      var _err = new Error();
+      var _stack = _err.stack;
+
+      if (!_stack) {
+        // IE10
+        try { throw _err } catch (e) { _stack = e.stack }
+      }
+      this.stack = _stack;
+    }
+  }
+}
+
 export class Violate {
   constructor(rules) {
     // validate arguments
@@ -74,13 +95,12 @@ export class Violate {
   }
 
   assert(values) {
-    //  delegate to this.validate
+    // delegate to this.validate
     let violations = this.validate(values);
     if (violations === undefined) {
       return;
     }
 
-    // use console.assert for isomorphic
-    console.assert(false, JSON.stringify(violations));
+    throw new AssertionError(JSON.stringify(violations));
   }
 }
