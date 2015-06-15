@@ -82,6 +82,8 @@ function main() {
 }
 ```
 
+if `validator.assert()` failed, it throws [`AssertionError`](https://github.com/Jxck/violations/blob/master/src/index.js#L23).
+
 ## API
 
 ### paramter
@@ -215,6 +217,10 @@ let rules = {
 - isRegExp
 - isError (instanceof Error)
 - isEmail (based on [whatwg regexp](https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address))
+
+## CHANGELOG
+
+- v0.1.0: throw AssertionError if `assert()` failed instead of calling `console.assert()`
 
 ## License
 
