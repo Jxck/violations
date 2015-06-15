@@ -46,12 +46,7 @@ export class AssertionError extends Error {
 }
 
 export class Violate {
-  constructor(rules) {
-    // validate arguments
-    if (rules === undefined) {
-      throw new Error('constructor requires rules object');
-    }
-
+  constructor(rules = {}) {
     this.rules = rules;
   }
 
