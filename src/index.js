@@ -27,16 +27,20 @@ export class AssertionError extends Error {
     this.message = message;
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, argument.callee);
+      Error.captureStackTrace(this);
     } else {
-      var _err = new Error();
-      var _stack = _err.stack;
+      let err = new Error();
+      let stack = err.stack;
 
-      if (!_stack) {
+      if (!stack) {
         // IE10
-        try { throw _err } catch (e) { _stack = e.stack }
+        try {
+          throw err;
+        } catch (e) {
+          stack = e.stack;
+        }
       }
-      this.stack = _stack;
+      this.stack = stack;
     }
   }
 }
